@@ -1,0 +1,100 @@
+[
+  {
+    "titulo": "Meditações",
+    "autor": "Marco Aurélio",
+    "genero": "Filosofia",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "Orgulho e Preconceito",
+    "autor": "Jane Austen",
+    "genero": "Romance",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "Nada Pode Me Ferir",
+    "autor": "David Goggins",
+    "genero": "Autoajuda",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "O Homem Invisível",
+    "autor": "H.G. Wells",
+    "genero": "Ficção Científica",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "Utopia",
+    "autor": "Thomas More",
+    "genero": "Filosofia",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "A Revolução dos Bichos",
+    "autor": "George Orwell",
+    "genero": "Fábula Política",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "As Crônicas de Nárnia",
+    "autor": "C.S. Lewis",
+    "genero": "Fantasia",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "Cartas Chilenas",
+    "autor": "Tomás Antônio Gonzaga",
+    "genero": "Sátira",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "O Príncipe",
+    "autor": "Nicolau Maquiavel",
+    "genero": "Filosofia Política",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "O Guia do Mochileiro das Galáxias",
+    "autor": "Douglas Adams",
+    "genero": "Ficção Científica",
+    "numero_exemplares": 0,
+    "alugado": false
+  },
+  {
+    "titulo": "Amor a vida",
+    "autor": "Mamae Falei",
+    "genero": "Romance",
+    "numero_exemplares": 2,
+    "alugado": false
+  },
+  {
+    "titulo": "Amor",
+    "autor": "Matias",
+    "genero": "Jose",
+    "numero_exemplares": 1,
+    "alugado": false
+  },
+  {
+    "titulo": "matias",
+    "autor": "matias2",
+    "genero": "terror",
+    "numero_exemplares": 1,
+    "alugado": false
+  },
+  {
+    "titulo": "autor",
+    "autor": "matias",
+    "genero": "terror",
+    "numero_exemplares": 2,
+    "alugado": false
+  }
+]
