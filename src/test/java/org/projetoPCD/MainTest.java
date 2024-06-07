@@ -1,38 +1,26 @@
 package org.projetoPCD;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-/**
- * Unit test for simple App.
- */
-public class MainTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public MainTest(String testName )
-    {
-        super( testName );
+public class MainTest {
+
+    @Test
+    public void testIniciarServidor() {
+        // Verificar se o servidor é iniciado corretamente na porta padrão
+        Main.iniciarServidor(Main.DEFAULT_PORT);
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( MainTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void testIniciarCliente() {
+        // Verificar se o cliente é iniciado apenas quando o servidor está ativo
+        Main.iniciarServidorParaTestes(); // Iniciar o servidor em uma porta diferente
+        // Esperar um pouco para garantir que o servidor tenha tempo para iniciar completamente
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Main.iniciarCliente(); // Tentar iniciar o cliente após o servidor estar ativo
     }
 }

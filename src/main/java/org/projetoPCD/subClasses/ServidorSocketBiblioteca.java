@@ -1,0 +1,101 @@
+package org.projetoPCD.subClasses;
+
+import com.google.gson.Gson;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.List;
+
+public class ServidorSocketBiblioteca {
+    private final Biblioteca biblioteca;
+
+    public ServidorSocketBiblioteca() {
+        this.biblioteca = new Biblioteca();
+    }
+
+    public void start(int port) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Servidor iniciado na porta " + port);
+
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                new ClientHandler(clientSocket, biblioteca).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        int port = 12345; // Porta padrão
+        if (args.length > 0) {
+            port = Integer.parseInt(args[0]); // Usar a porta fornecida como argumento, se houver
+        }
+        new ServidorSocketBiblioteca().start(port);
+    }
+
+    private static class ClientHandler extends Thread {
+        private final Socket clientSocket;
+        private final Biblioteca biblioteca;
+
+        public ClientHandler(Socket socket, Biblioteca biblioteca) {
+            this.clientSocket = socket;
+            this.biblioteca = biblioteca;
+        }
+
+        @Override
+        public void run() {
+            try (
+                    BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+            ) {
+                String request;
+                while ((request = in.readLine()) != null) {
+                    String[] parts = request.split(":", 2);
+                    String command = parts[0];
+
+                    switch (command) {
+                        case "LISTAR":
+                            List<Livro> livros = biblioteca.listarTodosOsLivros();
+                            out.println(new Gson().toJson(livros));
+                            break;
+
+                        case "CADASTRAR":
+                            Livro novoLivro = new Gson().fromJson(parts[1], Livro.class);
+                            if (biblioteca.adicionarLivro(novoLivro)) {
+                                out.println("Livro cadastrado com sucesso.");
+                            } else {
+                                out.println("Erro ao cadastrar o livro. Livro já existe.");
+                            }
+                            break;
+
+                        case "ALUGAR":
+                            String tituloAlugar = parts[1];
+                            if (biblioteca.alugarLivroPorTitulo(tituloAlugar)) {
+                                out.println("Livro alugado com sucesso.");
+                            } else {
+                                out.println("Erro ao alugar o livro. Livro não disponível ou todos os exemplares foram alugados.");
+                            }
+                            break;
+
+                        case "DEVOLVER":
+                            String tituloDevolver = parts[1];
+                            if (biblioteca.devolverLivroPorTitulo(tituloDevolver)) {
+                                out.println("Livro devolvido com sucesso.");
+                            } else {
+                                out.println("Erro ao devolver o livro. Livro não encontrado.");
+                            }
+                            break;
+
+                        default:
+                            out.println("Comando desconhecido.");
+                            break;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

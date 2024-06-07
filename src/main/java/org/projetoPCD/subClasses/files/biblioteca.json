@@ -96,5 +96,12 @@
     "genero": "terror",
     "numero_exemplares": 2,
     "alugado": false
+  },
+  {
+    "titulo": "Livro de Teste",
+    "autor": "Autor de Teste",
+    "genero": "Ficção",
+    "numero_exemplares": 1,
+    "alugado": false
   }
 ]
